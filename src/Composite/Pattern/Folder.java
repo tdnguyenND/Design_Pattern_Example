@@ -3,12 +3,16 @@ package Composite.Pattern;
 import java.util.ArrayList;
 
 public class Folder implements FileItem {
-    ArrayList<FileItem> items;
+    private ArrayList<FileItem> items;
     private StringBuilder headLineForChildren;
 
     public Folder() {
         this.items = new ArrayList<>();
         this.headLineForChildren = new StringBuilder();
+    }
+
+    private void setHeadLineForChildren(StringBuilder headLineForChildren) {
+        this.headLineForChildren = new StringBuilder(headLineForChildren) ;
     }
 
     public void appendItem(FileItem item){
@@ -35,8 +39,8 @@ public class Folder implements FileItem {
     private void printChild(FileItem f){
         System.out.print(headLineForChildren);
 
-        //if a child is folder, all of its children should be written backward by one tab from the current blank space
-        if (f instanceof Folder) ((Folder) f).backward();
+        //if a child is folder, all of its children should be written backward FROM THE CURRENT BLANK SPACE
+        if (f instanceof Folder) ((Folder) f).setHeadLineForChildren(this.headLineForChildren);
 
         f.print();
     }

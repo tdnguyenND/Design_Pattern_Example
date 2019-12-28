@@ -32,6 +32,12 @@ public class Application {
         root.add(f1);
         root.add(file2);
         root.add(sc2);
+
+        Folder f3 = new Folder();
+        File file4 = new File();
+        f3.appendItem(file4);
+
+        f2.appendItem(f3);
     }
 
     void render(){
